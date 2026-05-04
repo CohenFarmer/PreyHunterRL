@@ -4,7 +4,7 @@ Two rl agents trained separately in unity ml-agents.
 hunter learns to shoot moving targets via 15 stage curriculum.
 prey learns to find food and water under hunger and thirst drives.
 
-![preyhunter](media/preyhunter.gif)
+![demo](media/preyhunter.gif)
 ## hunter
 
 Archery agent on a fixed tower. observes via 51 ray vision cone, picks
@@ -44,7 +44,7 @@ mlagents-learn config/prey.yaml --run-id=prey_v1 --num-envs=4
 ## what id do differently
 
 - co train them from the start. trained separately, integrating after was painful
-- 112 obs is overkill for both. could probably do half
+- 112 obs is overkill for both. could probably do half, I wasn't sure how many raycasts I needed at beginning so went for more
 - prey doesnt observe the hunter as a threat, as prey's were trained alone
 
 ## stack
