@@ -1,0 +1,314 @@
+behaviors:
+  Prey:
+    trainer_type: ppo
+    hyperparameters:
+      batch_size: 2048
+      buffer_size: 20480
+      learning_rate: 1.0e-4
+      beta: 0.02
+      epsilon: 0.2
+      lambd: 0.95
+      num_epoch: 3
+      learning_rate_schedule: linear
+      beta_schedule: constant
+    network_settings:
+      normalize: true
+      hidden_units: 512
+      num_layers: 3
+    reward_signals:
+      extrinsic:
+        gamma: 0.99
+        strength: 1.0
+    keep_checkpoints: 5
+    max_steps: 10000000
+    time_horizon: 512
+    summary_freq: 5000
+
+# Curriculum: arena width grows by 1 every 50k trainer steps.
+# Reaches max width 50 at step 1,750,000. Stays at 50 for the rest of training.
+# `measure: progress` = current_step / max_steps. 50k of 5M = 0.01 progress per lesson.
+environment_parameters:
+  arena_width:
+    curriculum:
+      - name: w15
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.0400  # advance at step 50000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 15.0
+      - name: w16
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.0600  # advance at step 100000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 16.0
+      - name: w17
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.1000  # advance at step 150000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 17.0
+      - name: w18
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.1200  # advance at step 200000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 18.0
+      - name: w19
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.1600  # advance at step 250000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 19.0
+      - name: w20
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.1800  # advance at step 300000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 20.0
+      - name: w21
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.2200  # advance at step 350000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 21.0
+      - name: w22
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.2400  # advance at step 400000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 22.0
+      - name: w23
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.2800  # advance at step 450000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 23.0
+      - name: w24
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.3000  # advance at step 500000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 24.0
+      - name: w25
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.3200  # advance at step 550000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 25.0
+      - name: w26
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.3300  # advance at step 600000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 26.0
+      - name: w27
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.3400  # advance at step 650000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 27.0
+      - name: w28
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.3600  # advance at step 700000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 28.0
+      - name: w29
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.3800  # advance at step 750000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 29.0
+      - name: w30
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.3900  # advance at step 800000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 30.0
+      - name: w31
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.4000  # advance at step 850000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 31.0
+      - name: w32
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.4400  # advance at step 900000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 32.0
+      - name: w33
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.4100  # advance at step 950000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 33.0
+      - name: w34
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.4200  # advance at step 1000000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 34.0
+      - name: w35
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.4300  # advance at step 1050000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 35.0
+      - name: w36
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.4400  # advance at step 1100000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 36.0
+      - name: w37
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.4600  # advance at step 1150000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 37.0
+      - name: w38
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.4800  # advance at step 1200000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 38.0
+      - name: w39
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.5000  # advance at step 1250000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 39.0
+      - name: w40
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.5200  # advance at step 1300000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 40.0
+      - name: w41
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.5600  # advance at step 1350000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 41.0
+      - name: w42
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.5700  # advance at step 1400000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 42.0
+      - name: w43
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.5800  # advance at step 1450000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 43.0
+      - name: w44
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.5900  # advance at step 1500000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 44.0
+      - name: w45
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.6000  # advance at step 1550000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 45.0
+      - name: w46
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.6100  # advance at step 1600000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 46.0
+      - name: w47
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.6200  # advance at step 1650000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 47.0
+      - name: w48
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.6300  # advance at step 1700000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 48.0
+      - name: w49
+        completion_criteria:
+          measure: progress
+          behavior: Prey
+          threshold: 0.6400  # advance at step 1750000
+          min_lesson_length: 0
+          signal_smoothing: true
+        value: 49.0
+      - name: w50  # final lesson — stays at this width for the rest of training
+        value: 50.0
