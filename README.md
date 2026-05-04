@@ -41,7 +41,7 @@ both trained with ppo via ml agents.
 mlagents-learn config/archery.yaml --run-id=archery_v1 --num-envs=4
 mlagents-learn config/prey.yaml --run-id=prey_v1 --num-envs=4
 
-## what id do differently
+## Improvements I would of made if I did it again from the start
 
 - co train them from the start. trained separately, integrating after was painful
 - 112 obs is overkill for both. could probably do half, I wasn't sure how many raycasts I needed at beginning so went for more
